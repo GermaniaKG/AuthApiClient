@@ -15,7 +15,7 @@ Since this a private package, add this to your **composer.json**
 
 ```json
 {
-	"require": {
+  "require": {
     "germania-kg/authapi-client": "^2.0"
   }
 }
