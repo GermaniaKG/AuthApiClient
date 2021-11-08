@@ -11,14 +11,8 @@
 
 ## Installation
 
-Since this a private package, add this to your **composer.json**
-
-```json
-{
-  "require": {
-    "germania-kg/authapi-client": "^2.0"
-  }
-}
+```bash
+composer require germania-kg/authapi-client
 ```
 
 
