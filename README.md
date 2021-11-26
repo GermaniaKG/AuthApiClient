@@ -290,6 +290,30 @@ echo $auth_token->getContent();  // "somerandomstring"
 echo $auth_token->getLifeTime(); // 3600
 ```
 
+## Create authorized requests: PSR-17 Requestfactory
+
+Once you have your *AuthToken*, you'll want to authorize at an API. In order to create an authorized PSR-7 Request, you can use class **AuthTokenRequestFactory** which wraps another “inner” PSR-17 RequestFactory. 
+
+The constructor requires an *AuthToken* instance or equivalent *string*; it optionally accepts any PSR-17 instance; per default [Nyholm's PSR-17 RequestFactory](https://github.com/Nyholm/psr7) will be used.  
+
+```php
+<?php
+use Germania\AuthApiClient\AuthTokenRequestFactory;
+
+# Have your AuthToken and, optionally, another PSR-17 Request Factory at hand:
+$auth_token = ...
+$inner_request_factory = new \Nyholm\Psr7\Factory\Psr17Factory;
+
+$psr17 = AuthTokenRequestFactory( $auth_token );
+$psr17 = AuthTokenRequestFactory( $auth_token ), $inner_request_factory);
+
+$request = $psr17->createRequest("GET", "/");
+// true
+$request->hasHeader("Authorization");
+
+
+```
+
 
 
 ## Testing
